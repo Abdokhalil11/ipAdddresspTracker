@@ -1,0 +1,41 @@
+doctype
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="./css/style.css")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" ,rel="stylesheet")
+    link(rel="stylesheet", href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css", integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" ,crossorigin="" )   
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css")
+  body
+      //- header
+      header 
+        img(src="./images/pattern-bg-desktop.png", alt="alt")
+        .container 
+          p IP address tracker
+          div.arrowSearch
+            input(tpye="search",placeholder="search for any ip address or domain")
+            button.arrow 
+              i.ri-arrow-right-s-line
+            button.userLocation 
+              i.ri-map-pin-line
+            
+          p.error
+          .statics 
+            .container
+              div 
+                p ip address
+                h4 192.168.1.1 
+              div 
+                p location
+                h4 Lorem, ipsum dolor 
+              div
+                p timeZone
+                h4 utc
+              div 
+                p isp
+                h4 spaceX
+      #map
+  script(src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" ,integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=",crossorigin="")
+  script(src="js/main.js")

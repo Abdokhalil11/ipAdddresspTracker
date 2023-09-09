@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", sans-serif;
+  box-sizing: border-box;
+}
+
+// mixins
+@mixin dimenstion($width) {
+  @if ($width== "small") {
+    @media (max-width: 776px) {
+      @content;
+    }
+  } @else if ($width== "medium") {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if ($width== "large") {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+@mixin d-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+//container
+.container {
+  padding: {
+    left: auto;
+    right: auto;
+  }
+  margin: {
+    left: 15px;
+    right: 15px;
+  }
+}
+
+@include dimenstion(small) {
+  .container {
+    max-width: 768px;
+  }
+}
+@include dimenstion(medium) {
+  .container {
+    max-width: 970px;
+  }
+}
+@include dimenstion(large) {
+  .container {
+    max-width: 1170px;
+  }
+}
+// function
+@function rem($size) {
+  @return $size / 16 + rem;
+}
+
+body {
+  height: 100vh;
+}
+
+// start header
+
+header {
+  position: relative;
+  height: calc(141px + 100px);
+  img {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+  .container {
+    padding: {
+      top: rem(30);
+    };
+    .error {
+      color: rgb(255, 0, 89);
+      text-align: center;
+      margin: rem(10) 0;
+      text-transform: capitalize;
+      font-size:rem(14);
+    }
+    p {
+      text-align: center;
+      font: {
+        size: rem(30);
+      }
+      @include dimenstion(small) {
+        font : {
+          size: rem(15);
+        }
+      }
+      color: white;
+      text : {
+        transform: capitalize;
+      }
+    }
+    .arrowSearch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: {
+        top: rem(20);
+      }
+      input {
+        width: rem(320);
+        height: rem(35);
+        border-radius: rem(10);
+        padding: rem(15);
+        display: block;
+        appearance: none;
+        border: none;
+        &::placeholder {
+          font: {
+            size: rem(12);
+          }
+        }
+      }
+      button.arrow {
+        width: rem(35);
+        height: rem(35);
+        border-top-left-radius: 0;
+        border-top-right-radius: rem(10);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: rem(10);
+        left: rem(-35);
+        background-color: black;
+        position: relative;
+        @include d-center;
+        i{
+          color: white;
+
+        }
+      }
+      button.userLocation{
+        @extend .arrow;
+        left: rem(-103);
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+//end header
+
+// start static
+.statics {
+  position: absolute;
+  width: calc(100% - 100px);
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(-141px / 2);
+  z-index: 99;
+  @include dimenstion(small) {
+    bottom: calc(-100% + rem(61));
+    width: 50%;
+  }
+  .container {
+    @include d-center;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    border-radius: rem(10);
+    padding: rem(30) rem(15);
+    margin: {
+      top: rem(20);
+    }
+    @include dimenstion(small) {
+      flex-direction: column;
+      align-items: center;
+    }
+    div {
+      position: relative;
+      width: calc((100% / 4) - 20px);
+      height: 100%;
+      @include dimenstion(small) {
+        width: 100%;
+      }
+      &:not(:last-child) {
+        &::before {
+          content: "";
+          position: absolute;
+          right: rem(5);
+          height: rem(50);
+          top: 50%;
+          transform: translateY(-50%);
+          width: rem(2);
+          background-color: #999;
+          @include dimenstion(small) {
+            & {
+              display: none;
+            }
+          }
+        }
+      }
+      p {
+        font-size: rem(12);
+        color: gray;
+        text: {
+          transform: uppercase;
+        }
+      }
+      h4 {
+        max-width: 100px;
+
+        font: {
+          size: rem(15);
+          weight: 500;
+        }
+        text-align: center;
+        margin: {
+          top: rem(10);
+          left: auto;
+          right: auto;
+        }
+      }
+    }
+  }
+}
+// end static
+
+// map
+#map {
+  position: relative;
+  z-index: 1;
+  height: calc(100% - (141px + 100px));
+}
